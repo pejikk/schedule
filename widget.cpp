@@ -22,7 +22,7 @@ void Widget::on_pushButton_clicked()
     QString pass = ui->pass->text();
     if ((login != "admin") && (pass != "admin"))
     {
-        QMessageBox::warning(this, "Успешно", "Неверный логин и/или пароль");
+        QMessageBox::warning(this, "Ошибка", "Неверный логин и/или пароль");
 
     }
     else
@@ -30,6 +30,9 @@ void Widget::on_pushButton_clicked()
     QMessageBox::information(this, "Успешно", "Вы авторизовались как адмаинистратор");
     window = new MainWindow(this);
     window->show();
+    window->resize(1348,574);
     this->hide();
     }
+
 }
+

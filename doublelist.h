@@ -13,8 +13,16 @@ template <class T>
 class MyNode {
     private:
         T data;
-//        int name,mon,tue,wed,thu,fri,sat,sun;
     public:
+        string name,mon,tue,wed,thu,fri,sat,sun;
+        string writeName(string name);
+        string writeMon(string mon);
+        string writeTue(string tue);
+        string writeWed(string wed);
+        string writeThu(string thu);
+        string writeFri(string fri);
+        string writeSat(string sat);
+        string writeSun(string sun);
         MyNode* next;
         MyNode* previous;
         MyNode(T data);
@@ -28,7 +36,46 @@ MyNode<T>::MyNode(T data) {
     this->data = data;
 }
 
-
+template <class T>
+string MyNode<T>::writeName(string name) {
+this->name = name;
+return "0";
+}
+template <class T>
+string MyNode<T>::writeMon(string mon) {
+this->mon = mon;
+return "0";
+}
+template <class T>
+string MyNode<T>::writeTue(string tue) {
+this->tue = tue;
+return "0";
+}
+template <class T>
+string MyNode<T>::writeWed(string wed) {
+this->wed = wed;
+return "0";
+}
+template <class T>
+string MyNode<T>::writeThu(string thu) {
+this->thu = thu;
+return "0";
+}
+template <class T>
+string MyNode<T>::writeFri(string fri) {
+this->fri = fri;
+return "0";
+}
+template <class T>
+string MyNode<T>::writeSat(string sat) {
+this->sat = sat;
+return "0";
+}
+template <class T>
+string MyNode<T>::writeSun(string sun) {
+this->sun = sun;
+return "0";
+}
 template <class T>
 T MyNode<T>::getData() {
     return this->data;
@@ -57,6 +104,14 @@ class MyList {
         T* getHead();
         T* getTail();
         int size(bool update=false);
+        void wwriteName(string name, int pos);
+        void wwriteMon(string mon, int pos);
+        void wwriteTue(string tue, int pos);
+        void wwriteWed(string wed, int pos);
+        void wwriteThu(string thu, int pos);
+        void wwriteFri(string fri, int pos);
+        void wwriteSat(string sat, int pos);
+        void wwriteSun(string sun, int pos);
         void addNodeAsTail(T* new_node);
         void addNodeAsHead(T* new_node);
         void push(T* new_node);
@@ -145,6 +200,78 @@ T* MyList<T>::pop() {
     return temp;
 }
 
+template <class T>
+void MyList<T>::wwriteName(string name, int pos) {
+    T* temp = this->head;
+    for (int i=1; i<pos; i++)
+        {
+            temp = temp->next;
+        }
+    temp->writeName(name);
+}
+template <class T>
+void MyList<T>::wwriteMon(string mon, int pos) {
+    T* temp = this->head;
+    for (int i=1; i<pos; i++)
+        {
+            temp = temp->next;
+        }
+    temp->writeMon(mon);
+}
+template <class T>
+void MyList<T>::wwriteTue(string tue, int pos) {
+    T* temp = this->head;
+    for (int i=1; i<pos; i++)
+        {
+            temp = temp->next;
+        }
+    temp->writeTue(tue);
+}
+template <class T>
+void MyList<T>::wwriteWed(string wed, int pos) {
+    T* temp = this->head;
+    for (int i=1; i<pos; i++)
+        {
+            temp = temp->next;
+        }
+    temp->writeWed(wed);
+}
+template <class T>
+void MyList<T>::wwriteThu(string thu, int pos) {
+    T* temp = this->head;
+    for (int i=1; i<pos; i++)
+        {
+            temp = temp->next;
+        }
+    temp->writeThu(thu);
+}
+template <class T>
+void MyList<T>::wwriteFri(string fri, int pos) {
+    T* temp = this->head;
+    for (int i=1; i<pos; i++)
+        {
+            temp = temp->next;
+        }
+    temp->writeFri(fri);
+}
+template <class T>
+void MyList<T>::wwriteSat(string sat, int pos) {
+    T* temp = this->head;
+    for (int i=1; i<pos; i++)
+        {
+            temp = temp->next;
+        }
+    temp->writeSat(sat);
+}
+template <class T>
+void MyList<T>::wwriteSun(string sun, int pos) {
+    T* temp = this->head;
+    for (int i=1; i<pos; i++)
+        {
+            temp = temp->next;
+        }
+    temp->writeSun(sun);
+}
 
 template <class T>
 T* MyList<T>::get(int index) {

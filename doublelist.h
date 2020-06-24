@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <QString>
 
 using namespace std;
 
@@ -14,8 +15,8 @@ class MyNode {
     private:
         T data;
     public:
-        string name,mon,tue,wed,thu,fri,sat,sun;
-        string writeName(string name);
+        QString name,mon,tue,wed,thu,fri,sat,sun;
+        QString writeName(QString name);
         string writeMon(string mon);
         string writeTue(string tue);
         string writeWed(string wed);
@@ -37,7 +38,7 @@ MyNode<T>::MyNode(T data) {
 }
 
 template <class T>
-string MyNode<T>::writeName(string name) {
+QString MyNode<T>::writeName(QString name) {
 this->name = name;
 return "0";
 }
@@ -104,7 +105,8 @@ class MyList {
         T* getHead();
         T* getTail();
         int size(bool update=false);
-        void wwriteName(string name, int pos);
+        QString getName(int pos);
+        void wwriteName(QString name, int pos);
         void wwriteMon(string mon, int pos);
         void wwriteTue(string tue, int pos);
         void wwriteWed(string wed, int pos);
@@ -201,13 +203,24 @@ T* MyList<T>::pop() {
 }
 
 template <class T>
-void MyList<T>::wwriteName(string name, int pos) {
+void MyList<T>::wwriteName(QString name, int pos) {
     T* temp = this->head;
     for (int i=1; i<pos; i++)
         {
             temp = temp->next;
         }
     temp->writeName(name);
+}
+
+template <class T>
+QString MyList<T>::getName(int pos)
+{
+    T* temp = this->head;
+    for (int i=1; i<pos; i++)
+        {
+            temp = temp->next;
+        }
+    return temp->name;
 }
 template <class T>
 void MyList<T>::wwriteMon(string mon, int pos) {

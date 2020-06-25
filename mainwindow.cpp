@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "doublelist.h"
+#include <QFile>
+#include <QTextStream>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -67,4 +69,34 @@ ui->tableWidget->removeRow(a);
 ui->tableWidget_2->removeRow(a);
 }
 }
+}
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    QString buffer="",buffer2="";
+    QFile file ("C:/Users/User/Documents/schedule/schedule.txt");
+    QTextStream stream(&buffer);
+    if ((file.exists())&&(file.open(QIODevice::ReadOnly| QIODevice::Text)))
+    {
+        buffer=file.readLine();
+        while (!file.atEnd())
+        {
+            ui->tableWidget->insertRow(a);
+            buffer=file.readLine();
+            for (int i=0;i<8;i++)
+                {
+                    stream>>buffer2;
+                    QTableWidgetItem *pCell = ui->tableWidget->item(a, b);
+                    pCell = new QTableWidgetItem;
+                    ui->tableWidget->setItem(a, b, pCell);
+                    pCell->setText(buffer2);
+                    b++;
+                }
+            stream.reset();
+            buffer2="";
+            b=0;
+            a++;
+         }
+    }
+    file.close();
 }

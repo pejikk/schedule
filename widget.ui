@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>318</width>
-    <height>185</height>
+    <width>312</width>
+    <height>209</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,6 +20,16 @@
       <string>GroupBox</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>Путь к файлу настроек</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="lineEdit"/>
+      </item>
       <item>
        <widget class="QLabel" name="label">
         <property name="text">

@@ -3,6 +3,7 @@
 #include "doublelist.h"
 #include <QFile>
 #include <QTextStream>
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -73,9 +74,10 @@ ui->tableWidget_2->removeRow(a);
 
 void MainWindow::on_pushButton_4_clicked()
 {
-    QString buffer="",buffer2="";
-    QFile file ("C:/Users/User/Documents/schedule/schedule.txt");
+    QString buffer="",buffer2="",path="";
+    path=ui->lineEdit->text();
     QTextStream stream(&buffer);
+    QFile file (path);
     if ((file.exists())&&(file.open(QIODevice::ReadOnly| QIODevice::Text)))
     {
         buffer=file.readLine();
@@ -97,6 +99,10 @@ void MainWindow::on_pushButton_4_clicked()
             b=0;
             a++;
          }
+    }
+    else
+    {
+        QMessageBox::warning(this, "Ошибка", "Неверный путь к файлу");
     }
     file.close();
 }

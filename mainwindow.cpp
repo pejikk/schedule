@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->tableWidget->setColumnCount(8);
-    ui->tableWidget->setHorizontalHeaderLabels(QStringList() << "Пользователь"<<"Понедельник"<<"Вторник"<<"Среда"<<"Четверг"<<"Пятница"<<"Суббота"<<"Воскресенье");
+    ui->tableWidget->setHorizontalHeaderLabels(QStringList() << "Пользователь"<<"Понедельник"<<"Вторник"<<"Среда"<<"Четверг"<<"Пятница"<<"Суббота"<<"Воскресенье"); //задание параметров таблиц
     ui->tableWidget_2->setColumnCount(1);
     ui->tableWidget_2->setHorizontalHeaderLabels(QStringList() << "Список пользователей");
     ui->tableWidget_3->setColumnCount(1);
@@ -27,75 +27,57 @@ MainWindow::~MainWindow()
 }
 
 MyList<MyNode<int>> stack;
-int i=1,j=0,a=0,b=0;
-int kek=0;
+int i=1,j=0,a=0,b=0,flag=0;
 
 void MainWindow::on_pushButton_3_clicked()
 {
-//MyList<MyNode<int>> stack;
-
-//    QString name="Если меня видно, ты красава";
     stack.push(new MyNode<int>(i));
-//    stack.wwriteName(name,i);
     ui->tableWidget->insertRow(a);
     ui->tableWidget_2->insertRow(a);
-//    QTableWidgetItem *pCell = ui->tableWidget->item(a, b);
-//    {
-//         pCell = new QTableWidgetItem;
-//         ui->tableWidget->setItem(a, b, pCell);
-//    }
-//         pCell->setText(stack.getName(i));
     i++;a++;
 }
 
-
-
-
-
-
-
 void MainWindow::on_pushButton_2_clicked()
 {
-if((ui->tableWidget->rowCount())>0)
-{
-if(i==1)
-{
-    stack.~MyList();
-}
-else{
-    i--;
-    a--;
-    stack.pop();
-ui->tableWidget->removeRow(a);
-ui->tableWidget_2->removeRow(a);
-}
-}
+    if((ui->tableWidget->rowCount())>0)
+    {
+         i--;
+         a--;
+         //stack.pop();
+         ui->tableWidget->removeRow(a);
+         ui->tableWidget_2->removeRow(a);
+    }
 }
 
 void MainWindow::on_pushButton_4_clicked()
 {
-    QString buffer="",buffer2="",path="";
+    if (flag!=0)
+    {
+        while(a>0)
+        {
+           a--;
+           ui->tableWidget->removeRow(a);
+        }
+    }
+    QString buffer="",path="";
     path=ui->lineEdit->text();
-    QTextStream stream(&buffer);
     QFile file (path);
+    QTextStream stream(&file);
     if ((file.exists())&&(file.open(QIODevice::ReadOnly| QIODevice::Text)))
     {
-        buffer=file.readLine();
-        while (!file.atEnd())
+        buffer=stream.readLine(150); //пропуск первой строки в файле
+        while (!stream.atEnd())
         {
             ui->tableWidget->insertRow(a);
-            buffer=file.readLine();
             for (int i=0;i<8;i++)
                 {
-                    stream>>buffer2;
+                    stream>>buffer;
                     QTableWidgetItem *pCell = ui->tableWidget->item(a, b);
                     pCell = new QTableWidgetItem;
                     ui->tableWidget->setItem(a, b, pCell);
-                    pCell->setText(buffer2);
+                    pCell->setText(buffer);
                     b++;
                 }
-            stream.reset();
-            buffer2="";
             b=0;
             a++;
          }
@@ -105,4 +87,5 @@ void MainWindow::on_pushButton_4_clicked()
         QMessageBox::warning(this, "Ошибка", "Неверный путь к файлу");
     }
     file.close();
+    flag=1;
 }

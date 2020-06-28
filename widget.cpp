@@ -22,6 +22,7 @@ void Widget::on_pushButton_Authorization_clicked()
 {
 
 }
+
 void Widget::on_pushButton_clicked()
 {
     QString login="", pass="",logincheck="",passcheck="",path="";
